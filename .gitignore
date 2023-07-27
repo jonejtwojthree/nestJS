@@ -2,3 +2,4 @@ dummy/
 node_modules
 .env
 dummy.*
+env.*
