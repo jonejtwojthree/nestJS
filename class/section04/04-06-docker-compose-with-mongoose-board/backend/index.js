@@ -40,7 +40,7 @@ app.get("/boards", async function (req, res) {
 
 app.post("/boards", async function (req, res) {
   // 1. 브라우저에서 보내준 데이터 확인하기
-  console.log(res.body);
+  console.log(req.body);
 
   // 2. DB에 접속 후, 데이터를 저장 => 데이터 저장했다고 가정
   const board = new Board({
