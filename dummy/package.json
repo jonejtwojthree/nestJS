@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "ts-node index.ts"
+    "start:dev": "ts-node index.ts",
+    "start:dmy": "ts-node dummy.ts"
   },
   "devDependencies": {
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
     "ts-node": "^10.9.1"
   }
 }
