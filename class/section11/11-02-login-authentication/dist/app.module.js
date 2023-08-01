@@ -16,11 +16,13 @@ const config_1 = require("@nestjs/config");
 const products_module_1 = require("./apis/products/products.module");
 const productsCategories_module_1 = require("./apis/productsCategories/productsCategories.module");
 const users_module_1 = require("./apis/users/users.module");
+const auth_module_1 = require("./apis/auth/auth.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            auth_module_1.AuthModule,
             boards_module_1.BoardsModule,
             products_module_1.ProductsModule,
             productsCategories_module_1.ProductsCategoriesModule,

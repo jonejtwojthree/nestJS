@@ -6,18 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersModule = void 0;
+exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
-const users_resolver_1 = require("./users.resolver");
-const users_service_1 = require("./users.service");
-const typeorm_1 = require("@nestjs/typeorm");
-const use_entity_1 = require("./entities/use.entity");
-let UsersModule = exports.UsersModule = class UsersModule {
+const auth_resolver_1 = require("./auth.resolver");
+const auth_service_1 = require("./auth.service");
+const users_module_1 = require("../users/users.module");
+const jwt_1 = require("@nestjs/jwt");
+let AuthModule = exports.AuthModule = class AuthModule {
 };
-exports.UsersModule = UsersModule = __decorate([
+exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([use_entity_1.User])],
-        providers: [users_resolver_1.UsersResolver, users_service_1.UsersService],
+        imports: [
+            users_module_1.UsersModule,
+            jwt_1.JwtModule.register({ signOptions: { expiresIn: '60m' } }),
+        ],
+        providers: [auth_resolver_1.AuthResolver, auth_service_1.AuthService],
     })
-], UsersModule);
-//# sourceMappingURL=users.module.js.map
+], AuthModule);
+//# sourceMappingURL=auth.module.js.map
