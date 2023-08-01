@@ -15,6 +15,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const config_1 = require("@nestjs/config");
 const products_module_1 = require("./apis/products/products.module");
 const productsCategories_module_1 = require("./apis/productsCategories/productsCategories.module");
+const users_module_1 = require("./apis/users/users.module");
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
@@ -23,6 +24,7 @@ exports.AppModule = AppModule = __decorate([
             boards_module_1.BoardsModule,
             products_module_1.ProductsModule,
             productsCategories_module_1.ProductsCategoriesModule,
+            users_module_1.UsersModule,
             config_1.ConfigModule.forRoot(),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
