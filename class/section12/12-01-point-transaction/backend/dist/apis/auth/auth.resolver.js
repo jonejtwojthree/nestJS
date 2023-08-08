@@ -24,12 +24,15 @@ let AuthResolver = exports.AuthResolver = class AuthResolver {
     login(email, password, context) {
         return this.authService.login({ email, password, context });
     }
+    fetchUser(context) {
+        console.log(context);
+        return '인가 성공';
+    }
     restoreAccessToken(context) {
         return this.authService.restoreAccessToken({ user: context.req.user });
     }
 };
 __decorate([
-    (0, common_1.UseGuards)((0, gql_auth_guard_1.GqlAuthGuard)('access')),
     (0, graphql_1.Mutation)(() => String),
     __param(0, (0, graphql_1.Args)('email')),
     __param(1, (0, graphql_1.Args)('password')),
@@ -38,6 +41,14 @@ __decorate([
     __metadata("design:paramtypes", [String, String, Object]),
     __metadata("design:returntype", Promise)
 ], AuthResolver.prototype, "login", null);
+__decorate([
+    (0, common_1.UseGuards)((0, gql_auth_guard_1.GqlAuthGuard)('access')),
+    (0, graphql_1.Mutation)(() => String),
+    __param(0, (0, graphql_1.Context)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", String)
+], AuthResolver.prototype, "fetchUser", null);
 __decorate([
     (0, common_1.UseGuards)((0, gql_auth_guard_1.GqlAuthGuard)('refresh')),
     (0, graphql_1.Mutation)(() => String),

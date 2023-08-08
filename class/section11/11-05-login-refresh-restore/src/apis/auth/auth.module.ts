@@ -8,10 +8,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 @Module({
   //   imports: [TypeOrmModule.forFeature([User])],
   // providers: [AuthResolver, AuthService, UsersService],imports: [UsersModule],
-  imports: [
-    UsersModule,
-    JwtModule.register({ signOptions: { expiresIn: '60m' } }),
-  ],
+  imports: [UsersModule, JwtModule.register({})],
   providers: [JwtAccessStrategy, AuthResolver, AuthService, JwtRefreshStrategy],
 })
 export class AuthModule {}

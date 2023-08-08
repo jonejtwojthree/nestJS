@@ -63,7 +63,7 @@ type Query {
 
 type Mutation {
   login(email: String!, password: String!): String!
-  restoreAccessToken: String!
+  restoreAcessToken: String!
   createUser(email: String!, password: String!, name: String!, age: Int!): User!
   createBoard(createBoardInput: CreateBoardInput!): String!
   createProduct(createProductInput: CreateProductInput!): Product!

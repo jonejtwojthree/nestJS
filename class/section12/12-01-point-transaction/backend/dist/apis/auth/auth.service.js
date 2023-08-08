@@ -20,13 +20,14 @@ let AuthService = exports.AuthService = class AuthService {
     }
     async login({ email, password, context, }) {
         const user = await this.usersService.findOneByEmail({ email });
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        console.log(user);
+        if (!user)
+            throw new common_1.UnprocessableEntityException('이메일이 없습니다.');
         const isAuth = password;
         if (!isAuth)
             throw new common_1.UnprocessableEntityException('암호가 틀렸습니다.');
+        const refreshToken = this.jwtService.sign({ sub: user.id }, { secret: '나의리프레시비밀번호', expiresIn: '2w' });
+        context.res.setHeader('set-Cookie', `refreshToken=${refreshToken}; path=/;`);
         this.setRefreshToken({ user, context });
-        console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
         return this.getAccessToken({ user });
     }
     restoreAccessToken({ user }) {
@@ -43,7 +44,7 @@ let AuthService = exports.AuthService = class AuthService {
         console.log('=========================');
         return this.jwtService.sign({
             payload: { sub: user.id },
-            options: { secret: '나의비밀번호', expireIn: '10s' },
+            options: { secret: '나의비밀번호', expireIn: '1h' },
         });
     }
 };

@@ -1,16 +1,19 @@
-import { Args, Mutation, Resolver, Context } from '@nestjs/graphql';
-import { AuthService } from './auth.service';
-import { IContext } from 'src/commons/interfaces/context';
+// auth.resolver.ts
+
 import { UseGuards } from '@nestjs/common';
+import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { IContext } from 'src/commons/interfaces/context';
+import { AuthService } from './auth.service';
 import { GqlAuthGuard } from './guards/gql-auth.guard';
 
 @Resolver()
 export class AuthResolver {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService, //
+  ) {}
 
-  @UseGuards(GqlAuthGuard('access'))
   @Mutation(() => String)
-  login(
+  async login(
     @Args('email') email: string, //
     @Args('password') password: string,
     @Context() context: IContext,
@@ -18,12 +21,11 @@ export class AuthResolver {
     return this.authService.login({ email, password, context });
   }
 
-  // 1. refreshToken 인가
-  // 2. accessToken 재발금
-
   @UseGuards(GqlAuthGuard('refresh'))
   @Mutation(() => String)
-  restoreAccessToken(@Context() context: IContext) {
-    this.authService.restoreAccessToken({ user: context.req.user });
+  restoreAcessToken(
+    @Context() context: IContext, //
+  ): string {
+    return this.authService.restoreAccessToken({ user: context.req.user });
   }
 }

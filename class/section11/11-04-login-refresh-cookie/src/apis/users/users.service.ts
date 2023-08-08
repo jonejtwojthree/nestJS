@@ -30,10 +30,7 @@ export class UsersService {
     name,
     age,
   }: IUsersServiceCreate): Promise<User> {
-    const user = await this.findOneByEmail({ email });
-    console.log('==============================');
-    console.log(user);
-
+    const user = this.findOneByEmail({ email });
     if (user) throw new ConflictException('이미 등록된 이메일 입니다');
     //throw new HttpException('이미 등록된 이메일 입니다', HttpStatus.CONFLICT);
 

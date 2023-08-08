@@ -32,10 +32,9 @@ export class AuthService {
   }
 
   getAccessToken({ user }: IAuthServiceGetAccessToken): string {
-    console.log('=========================');
-    console.log(user);
-    console.log('=========================');
-
-    return this.jwtService.sign({ sub: user.id });
+    return this.jwtService.sign(
+      { sub: user.id },
+      { secret: '나의비밀번호', expiresIn: '1h' },
+    );
   }
 }

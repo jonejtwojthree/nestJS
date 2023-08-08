@@ -1,5 +1,8 @@
+import { Request, Response } from 'express';
+
 export interface IAuthUser {
   user?: {
+    email: string;
     id: string;
   };
 }

@@ -1,3 +1,5 @@
+// auth-service.interface.ts
+
 import { User } from 'src/apis/users/entities/use.entity';
 import { IContext } from 'src/commons/interfaces/context';
 

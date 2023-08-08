@@ -4,5 +4,6 @@ export declare class AuthResolver {
     private readonly authService;
     constructor(authService: AuthService);
     login(email: string, password: string, context: IContext): Promise<string>;
+    fetchUser(context: IContext): string;
     restoreAccessToken(context: IContext): string;
 }
