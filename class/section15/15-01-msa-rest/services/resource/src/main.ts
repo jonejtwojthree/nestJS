@@ -1,0 +1,19 @@
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+
+async function bootstrap() {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    // API 게이트웨이와 서비스를 똑같이 입력
+    {
+      transport: Transport.TCP,
+      options: {
+        host: 'resource-service',
+        port: 3002,
+      },
+    },
+  );
+  await app.listen();
+}
+bootstrap();

@@ -3,3 +3,7 @@ node_modules
 .env
 dummy.*
 env.*
+nest-cli.json
+.env.*
+
+backend-395706-16cededd41a8.json

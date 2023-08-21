@@ -1,0 +1,8 @@
+Headers => X
+
+Body => form-data
+
+operations  { "query": "mutation uploadFile($file: Upload!) { uploadFile(file: $file) }", "variables": { "file": null } }
+map         { "0": ["variables.file"] }
+0           [파일선택] qqq.jepg
+(map에서 0이라고 해서 0임)
